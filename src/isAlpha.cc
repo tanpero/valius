@@ -5,8 +5,6 @@
 
 namespace valius
 {
-namespace alpha
-{
 	std::vector<std::string> englishLocalesTable()
 	{
 		return { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" };
@@ -171,10 +169,25 @@ namespace alpha
         }
         catch (std::exception&)
         {
-            throw std::exception("Unknown language name");
+            throw std::exception("Unsupported locale type");
         }
         std::regex regex(pattern, std::regex_constants::ECMAScript | std::regex_constants::icase);
         return std::regex_match(s, regex);
-    }		
-}
+    }
+	
+	bool isAlphanumeric(std::string s, std::string env)
+    {
+        std::string pattern;
+        auto table = alphanumericTable();
+        try
+        {
+            pattern = table.at(env);
+        }
+        catch (std::exception&)
+        {
+            throw std::exception("Unsupported locale type");
+        }
+        std::regex regex(pattern, std::regex_constants::ECMAScript | std::regex_constants::icase);
+        return std::regex_match(s, regex);
+    }
 }

@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[])
 {
-	using namespace valius::alpha;
+	using namespace valius;
 	if (argc == 2)
 		std::cout << '"' << argv[1] << (isAlpha(argv[1]) ? "\" is " : "\" is not ") << "alpha" << "\n";
 	else if (argc == 3)
@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 		}
 		catch (const std::exception&)
 		{
-			std::cout << "\"" << argv[2] << "\" is not a supported language type.\n";
+			std::cout << "\"" << argv[2] << "\" is not a supported locale type.\n";
 		}
 	else
 		std::cout << "Usage: " + std::string(argv[0]) + " <text> <language>" << "\n";
