@@ -42,3 +42,53 @@ include_directories (include)
 
 add_executable (test-isBIC tests/test-isBIC.cc)
 target_link_libraries (test-isBIC isBIC)
+
+# valius.isBoolean
+add_library (valius.isBoolean SHARED src/isBoolean.cc)
+add_library (isBoolean STATIC src/isBoolean.cc)
+include_directories (include)
+
+add_executable (test-isBoolean tests/test-isBoolean.cc)
+target_link_libraries (test-isBoolean isBoolean)
+
+# valius.isByteLength
+add_library (valius.isByteLength SHARED src/isByteLength.cc)
+add_library (isByteLength STATIC src/isByteLength.cc)
+include_directories (include)
+
+add_executable (test-isByteLength tests/test-isByteLength.cc)
+target_link_libraries (test-isByteLength isByteLength)
+
+# valius.isCreditCard
+add_library (valius.isCreditCard SHARED src/isCreditCard.cc)
+add_library (isCreditCard STATIC src/isCreditCard.cc)
+include_directories (include)
+
+add_executable (test-isCreditCard tests/test-isCreditCard.cc)
+target_link_libraries (test-isCreditCard isCreditCard)
+
+# valius.isCurrency
+add_library (valius.isCurrency SHARED src/isCurrency.cc)
+add_library (isCurrency STATIC src/isCurrency.cc)
+include_directories (include)
+
+add_executable (test-isCurrency tests/test-isCurrency.cc)
+target_link_libraries (test-isCurrency isCurrency)
+
+# valius.isDataURI
+add_library (valius.isDataURI SHARED src/isDataURI.cc)
+add_library (isDataURI STATIC src/isDataURI.cc)
+include_directories (include)
+
+add_executable (test-isDataURI tests/test-isDataURI.cc)
+target_link_libraries (test-isDataURI isDataURI)
+
+# valius.isDecimal
+add_library (valius.isDecimal SHARED src/isDecimal.cc)
+add_library (isDecimal STATIC src/isDecimal.cc)
+include_directories (include)
+
+add_executable (test-isDecimal tests/test-isDecimal.cc)
+target_link_libraries (test-isDecimal isDecimal)
+
+
