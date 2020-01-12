@@ -4,8 +4,8 @@ project (valius)
 aux_source_directory (src SRC)
 
 # valius.isAlpha
-add_library (valius.isAlpha SHARED src/isAlpha.cc)
-add_library (isAlpha STATIC src/isAlpha.cc)
+add_library (valius.isAlpha SHARED src/alpha.cc src/isAlpha.cc)
+add_library (isAlpha STATIC src/alpha.cc src/isAlpha.cc)
 include_directories (include)
 
 add_executable (test-isAlpha tests/test-isAlpha.cc)
