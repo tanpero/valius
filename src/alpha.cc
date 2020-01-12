@@ -65,11 +65,12 @@ namespace alpha
         std::string locale;
 		std::vector<std::string> englishLocales = englishLocalesTable(),
 		        arabicLocales = arabicLocalesTable();
-        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
+		size_t i, size;
+        for (i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
-		for (size_t i = 0, size = arabicLocales.size(); i < size; i++) {
+		for (i = 0, size = arabicLocales.size(); i < size; i++) {
             locale = "ar-" + arabicLocales[i];
             table[locale] = table["ar"];
         }
@@ -113,11 +114,12 @@ namespace alpha
         std::string locale;
 		std::vector<std::string> englishLocales = englishLocalesTable(),
 		        arabicLocales = arabicLocalesTable();
-        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
+		size_t i, size;
+        for (i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
-		for (size_t i = 0, size = arabicLocales.size(); i < size; i++) {
+		for (i = 0, size = arabicLocales.size(); i < size; i++) {
             locale = "ar-" + arabicLocales[i];
             table[locale] = table["ar"];
         }
@@ -139,7 +141,8 @@ namespace alpha
 		        arabicLocales = arabicLocalesTable(),
 				dotDecimal = dotDecimalTable(),
 				commaDecimal = commaDecimalTable();
-        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
+		size_t i, size;
+        for (i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
@@ -149,7 +152,7 @@ namespace alpha
         }
 		
 		for (i = 0, size = dotDecimal.size(); i < size; i++) {
-		  table[dotDecimal[i]] = decimal["en-US"];
+		  table[dotDecimal[i]] = table["en-US"];
 		}
 
 		for (i = 0, size = commaDecimal.size(); i < size; i++) {
