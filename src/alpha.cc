@@ -12,6 +12,24 @@ namespace alpha
 		return { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" };
 	}
 	
+	std::vector<std::string> arabicLocalesTable()
+	{
+		return { "AE", "BH", "DZ", "EG", "IQ", "JO", "KW", "LB", "LY",
+		    "MA", "QM", "QA", "SA", "SD", "SY", "TN", "YE" };
+	};
+	
+	std::vector<std::string> dotDecimalTable()
+	{
+		return { "ar-EG", "ar-LB", "ar-LY" };
+	}
+	
+	std::vector<std::string> commaDecimalTable()
+	{
+		return { "bg-BG", "cs-CZ", "da-DK", "de-DE", "el-GR", "en-ZM", "es-ES", "fr-FR", "it-IT", "ku-IQ", "hu-HU", "nb-NO",
+			"nn-NO", "nl-NL", "pl-PL", "pt-PT", "ru-RU", "sl-SI", "sr-RS@latin",
+			"sr-RS", "sv-SE", "tr-TR", "uk-UA" };
+	};
+	
     std::map<std::string, std::string> alphaTable()
     {
         std::map<std::string, std::string> table {
@@ -45,11 +63,18 @@ namespace alpha
         };
 		
         std::string locale;
-		std::vector<std::string> englishLocales = englishLocalesTable();
+		std::vector<std::string> englishLocales = englishLocalesTable(),
+		        arabicLocales = arabicLocalesTable();
         for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
+		for (size_t i = 0, size = arabicLocales.size(); i < size; i++) {
+            locale = "ar-" + arabicLocales[i];
+            table[locale] = table["ar"];
+        }
+		table["pt-BR"] = table["pt-PT"];
+		table["pl-Pl"] = table["pl-PL"];
         return table;
     };
 
@@ -84,14 +109,21 @@ namespace alpha
         { "he", R"(^[0-9א-ת]+$)" },
         { "fa-IR", R"(^["0-9آابپتثجچهخدذرزژسشصضطظعغفقکگلمنوهی۱۲۳۴۵۶۷۸۹۰"]+$)" },
         };
-            
+        
         std::string locale;
-		std::vector<std::string> englishLocales = englishLocalesTable();
+		std::vector<std::string> englishLocales = englishLocalesTable(),
+		        arabicLocales = arabicLocalesTable();
         for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
-    return table;        
+		for (size_t i = 0, size = arabicLocales.size(); i < size; i++) {
+            locale = "ar-" + arabicLocales[i];
+            table[locale] = table["ar"];
+        }
+		table["pt-BR"] = table["pt-PT"];
+		table["pl-Pl"] = table["pl-PL"];
+		return table;        
     };
 
     std::map<std::string, std::string> decimalTable()
@@ -103,13 +135,28 @@ namespace alpha
         };            
 
         std::string locale;
-		std::vector<std::string> englishLocales = englishLocalesTable();
+		std::vector<std::string> englishLocales = englishLocalesTable(),
+		        arabicLocales = arabicLocalesTable(),
+				dotDecimal = dotDecimalTable(),
+				commaDecimal = commaDecimalTable();
         for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
-        return table;        
-    };
+		for (i = 0, size = arabicLocales.size(); i < size; i++) {
+            locale = "ar-" + arabicLocales[i];
+            table[locale] = table["ar"];
+        }
+		
+		for (i = 0, size = dotDecimal.size(); i < size; i++) {
+		  table[dotDecimal[i]] = decimal["en-US"];
+		}
+
+		for (i = 0, size = commaDecimal.size(); i < size; i++) {
+		  table[commaDecimal[i]] = ",";
+		}
+		return table;        
+	};
     
     bool isAlpha(std::string s, std::string env)
     {
@@ -125,8 +172,6 @@ namespace alpha
         }
         std::regex regex(pattern, std::regex_constants::ECMAScript | std::regex_constants::icase);
         return std::regex_match(s, regex);
-    }
-    
-		
+    }		
 }
 }
