@@ -1,5 +1,5 @@
 #include <iostream>
-#include <valius/alpha.h>
+#include <valius/isAlpha.h>
 
 int main(int argc, char* argv[])
 {
