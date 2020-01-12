@@ -7,6 +7,11 @@ namespace valius
 {
 namespace alpha
 {
+	std::vector<std::string> englishLocalesTable()
+	{
+		return { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" };
+	}
+	
     std::map<std::string, std::string> alphaTable()
     {
         std::map<std::string, std::string> table {
@@ -38,10 +43,10 @@ namespace alpha
             { "he", R"(^[א-ת]+$)" },
             { "fa-IR", R"(^["آابپتثجچهخدذرزژسشصضطظعغفقکگلمنوهی"]+$)" },
         };
-            
-        std::vector<std::string> englishLocales { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" };
+		
         std::string locale;
-        for (size_t i = 0; i < englishLocales.size(); i++) {
+		std::vector<std::string> englishLocales = englishLocalesTable();
+        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
@@ -80,11 +85,11 @@ namespace alpha
         { "fa-IR", R"(^["0-9آابپتثجچهخدذرزژسشصضطظعغفقکگلمنوهی۱۲۳۴۵۶۷۸۹۰"]+$)" },
         };
             
-        std::vector<std::string> englishLocales { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" };
         std::string locale;
-        for (size_t i = 0; i < englishLocales.size(); i++) {
-        locale = "en-" + englishLocales[i];
-        table[locale] = table["en-US"];
+		std::vector<std::string> englishLocales = englishLocalesTable();
+        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
+            locale = "en-" + englishLocales[i];
+            table[locale] = table["en-US"];
         }
     return table;        
     };
@@ -95,10 +100,11 @@ namespace alpha
         {
             { "en-US", "\\." },
             {"ar", "٫" },
-        };
-            
-        std::vector<std::string> englishLocales { "AU", "GB", "HK", "IN", "NZ", "ZA", "ZM" }; std::string locale;
-        for (size_t i = 0; i < englishLocales.size(); i++) {
+        };            
+
+        std::string locale;
+		std::vector<std::string> englishLocales = englishLocalesTable();
+        for (size_t i = 0, size = englishLocales.size(); i < size; i++) {
             locale = "en-" + englishLocales[i];
             table[locale] = table["en-US"];
         }
@@ -121,5 +127,6 @@ namespace alpha
         return std::regex_match(s, regex);
     }
     
+		
 }
 }
