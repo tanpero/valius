@@ -12,7 +12,7 @@ static inline int parseInt(std::string s)
 	int result = 0;
 	for (std::string::iterator i = s.begin(); i != s.end(); ++i)
 	{
-		if (std::isdigit(*i))
+		if (*i >= '0' && *i <= '9')
 		{
 			result = result * 10 - (*i - '0');
 		}
@@ -22,6 +22,32 @@ static inline int parseInt(std::string s)
 		}
 	}
 	return negate ? result : -result;
+}
+
+static inline bool luhn10(std::string identifier) {
+	int sum = 0;
+	bool alt = false;
+	size_t i = identifier.size() - 1;
+	int num;
+
+	while (i >= 0) {
+		num = parseInt(std::to_string(identifier.at(i)));
+
+		if (alt) {
+			num *= 2;
+			if (num > 9) {
+				num = (num % 10) + 1; // eslint-disable-line no-extra-parens
+			}
+		}
+
+		alt = !alt;
+
+		sum += num;
+
+		i--;
+	}
+
+	return sum % 10 == 0;
 }
 
 namespace valius
