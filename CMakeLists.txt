@@ -84,8 +84,8 @@ add_executable (test-isDataURI tests/test-isDataURI.cc)
 target_link_libraries (test-isDataURI isDataURI)
 
 # valius.isDecimal
-add_library (valius.isDecimal SHARED src/isDecimal.cc)
-add_library (isDecimal STATIC src/isDecimal.cc)
+add_library (valius.isDecimal SHARED src/alpha.cc src/isDecimal.cc)
+add_library (isDecimal STATIC src/alpha.cc src/isDecimal.cc)
 include_directories (include)
 
 add_executable (test-isDecimal tests/test-isDecimal.cc)
